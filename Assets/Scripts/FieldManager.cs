@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class FieldManager : MonoBehaviour {
 
-    public PawnManager pawnManager;
+    //public PawnManager pawnManager;
+    public GameManager gameManager;
     
 
 	// Use this for initialization
 	void Start () {
         gameObject.GetComponent<Renderer>().enabled = false;
-        //pawnManager = pawnManager.GetComponent<PawnManager>();
+        gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
 	}
 	
 	// Update is called once per frame
@@ -30,6 +31,6 @@ public class FieldManager : MonoBehaviour {
 
     private void OnMouseDown()
     {
-        pawnManager.PutPawn();
+        gameManager.PutPawn(gameObject);
     }
 }
