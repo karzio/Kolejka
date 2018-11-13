@@ -14,7 +14,7 @@ public class GameManager : MonoBehaviour {
     // Use this for initialization
     void Start()
     {
-        numberOfPlayers = 4;
+        numberOfPlayers = 5;
         currentPlayer = 0;
         Color[] colors = { Color.magenta, Color.yellow, Color.green, Color.blue, Color.red };
         for(int i = 0; i < numberOfPlayers; i++)
@@ -29,12 +29,13 @@ public class GameManager : MonoBehaviour {
     }
 
     public void PutPawn(GameObject field)
-    { 
-        Object prefab = AssetDatabase.LoadAssetAtPath("Assets/Prefabs/Pawn.prefab", typeof(GameObject));
-        GameObject pawn = Instantiate(prefab, field.transform.position, field.transform.rotation) as GameObject;
-        pawn.GetComponent<Renderer>().material.color = players[currentPlayer].pawnColor;
-        pawn.transform.SetParent(field.transform);
-        this.GetNextPlayer();
+    {
+            Object prefab = AssetDatabase.LoadAssetAtPath("Assets/Prefabs/Pawn.prefab", typeof(GameObject));
+            GameObject pawn = Instantiate(prefab, field.transform.position, field.transform.rotation) as GameObject;
+            pawn.GetComponent<Renderer>().material.color = players[currentPlayer].pawnColor;
+            pawn.transform.SetParent(field.transform);
+            players[currentPlayer].PutDownPawn();
+            this.GetNextPlayer();
     }
 
     public void GetNextPlayer()
